@@ -77,11 +77,13 @@
     <p>En el mensaje, incluye tu nombre completo y correo electrónico. Luego, completa el formulario abajo.</p>
   </div>
 
-  <button class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
-    Comprar Boleto
-  </button>
+<!-- Comprar Boleto Button -->
+<button type="button" class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
+  Comprar Boleto
+</button>
 
- <div id="formulario" class="form-container">
+<!-- Hidden Form Section -->
+<div id="formulario" class="form-container" style="display:none;">
   <h2>Formulario de Participación</h2>
   <form action="https://formspree.io/f/xkgrjnqo" method="POST" id="raffle-form">
     <input type="text" name="nombre" placeholder="Nombre completo" required>
@@ -101,6 +103,7 @@
     document.getElementById('ticket-number').value = num;
   });
 </script>
+
 
 </body>
 </html>
