@@ -77,33 +77,39 @@
     <p>En el mensaje, incluye tu nombre completo y correo electrónico. Luego, completa el formulario abajo.</p>
   </div>
 
-<!-- Comprar Boleto Button -->
-<button type="button" class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
-  Comprar Boleto
-</button>
+  <!-- Comprar Boleto Button -->
+  <button type="button" class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
+    Comprar Boleto
+  </button>
 
-<!-- Hidden Form Section -->
-<div id="formulario" class="form-container" style="display:none;">
-  <h2>Formulario de Participación</h2>
-  <form action="https://formspree.io/f/xkgrjnqo" method="POST" id="raffle-form">
-    <input type="text" name="nombre" placeholder="Nombre completo" required>
-    <input type="tel" name="telefono" placeholder="Número de teléfono" required>
-    <input type="email" name="email" placeholder="Correo electrónico" required>
-    <input type="text" name="ciudad" placeholder="Ciudad donde resides" required>
-    <textarea name="comentario" placeholder="¿Qué harías si ganas el auto?" rows="4" required></textarea>
+  <!-- Hidden Form Section -->
+  <div id="formulario" class="form-container">
+    <h2>Formulario de Participación</h2>
+    <form action="https://formspree.io/f/xkgrjnqo" method="POST" id="raffle-form" onsubmit="assignTicketNumber(event)">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="tel" name="telefono" placeholder="Número de teléfono" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <input type="text" name="ciudad" placeholder="Ciudad donde resides" required>
+      <textarea name="comentario" placeholder="¿Qué harías si ganas el auto?" rows="4" required></textarea>
 
-    <input type="hidden" name="numero_boleto" id="ticket-number">
-    <button type="submit" class="button">Enviar</button>
-  </form> 
-</div>
+      <input type="hidden" name="numero_boleto" id="ticket-number">
+      <button type="submit" class="button">Enviar</button>
+    </form> 
+  </div>
 
-<script>
-  document.getElementById('raffle-form').addEventListener('submit', function () {
-    var num = Math.floor(Math.random() * 7505) + 1;
-    document.getElementById('ticket-number').value = num;
-  });
-</script>
+  <script>
+    function assignTicketNumber(event) {
+      // Prevent form from submitting immediately
+      event.preventDefault();
 
+      // Generate a random ticket number
+      var num = Math.floor(Math.random() * 7505) + 1;
+      document.getElementById('ticket-number').value = num;
+
+      // Submit the form
+      event.target.submit();
+    }
+  </script>
 
 </body>
 </html>
