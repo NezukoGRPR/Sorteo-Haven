@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteo del Auto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1em 0;
+    }
+    .car-image {
+      width: 100%;
+      max-width: 600px;
+      margin: 1em auto;
+    }
+    .instructions {
+      padding: 1em;
+      background-color: #fff;
+      margin: 1em auto;
+      max-width: 700px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .button {
+      background-color: #007bff;
+      color: white;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 1em 0;
+    }
+    .form-container {
+      display: none;
+      max-width: 700px;
+      margin: 2em auto;
+      background-color: #fff;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin: 0.5em 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    form textarea {
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>¡Participa en el Sorteo de este Auto!</h1>
+  </header>
+
+  <img src="auto.jpg" alt="Auto en sorteo" class="car-image">
+
+  <div class="instructions">
+    <h2>¿Cómo participar?</h2>
+    <p>Para participar, envía el costo del boleto a través de <strong>ATH Móvil</strong> al siguiente número:</p>
+    <p><strong>ATH Móvil: </strong></p>
+    <p>En el mensaje, incluye tu nombre completo y correo electrónico. Luego, completa el formulario abajo.</p>
+  </div>
+
+  <button class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
+    Comprar Boleto
+  </button>
+
+  <div id="formulario" class="form-container">
+    <h2>Formulario de Participación</h2>
+    <form action="#" method="post">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="tel" name="telefono" placeholder="Número de teléfono" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <input type="text" name="ciudad" placeholder="Ciudad donde resides" required>
+      <textarea name="comentario" placeholder="¿Qué harías si ganas el auto?" rows="4" required></textarea>
+      <button type="submit" class="button">Enviar</button>
+    </form>
+  </div>
+
+</body>
+</html>
