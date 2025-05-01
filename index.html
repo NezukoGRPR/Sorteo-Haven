@@ -60,7 +60,13 @@
     form textarea {
       resize: vertical;
     }
+    .paypal-button-container {
+      margin: 2em auto;
+    }
   </style>
+
+  <!-- Add PayPal's script -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&components=buttons"></script>
 </head>
 <body>
 
@@ -78,9 +84,15 @@
   </div>
 
   <!-- Comprar Boleto Button -->
-  <button type="button" class="button" onclick="document.getElementById('formulario').style.display='block'; window.scrollTo(0,document.body.scrollHeight);">
+  <button type="button" class="button" onclick="showPayPalButton();">
     Comprar Boleto
   </button>
+
+  <!-- PayPal Button Section (Hidden initially) -->
+  <div id="paypal-button-container" class="paypal-button-container" style="display:none;">
+    <h3>Pago del boleto</h3>
+    <div id="paypal-button"></div>
+  </div>
 
   <!-- Hidden Form Section -->
   <div id="formulario" class="form-container">
@@ -98,6 +110,36 @@
   </div>
 
   <script>
+    function showPayPalButton() {
+      // Show PayPal button
+      document.getElementById('paypal-button-container').style.display = 'block';
+    }
+
+    // PayPal Button Setup
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '10.00' // Adjust the amount as needed
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          // Payment approved, show the form and submit
+          alert('Pago exitoso, ¡Gracias por participar!');
+          document.getElementById('formulario').style.display = 'block';
+        });
+      },
+      onCancel: function(data) {
+        alert('Pago cancelado, por favor intente nuevamente.');
+      }
+    }).render('#paypal-button'); // Render PayPal button
+  </script>
+
+  <script>
     function assignTicketNumber(event) {
       // Prevent form from submitting immediately
       event.preventDefault();
@@ -113,3 +155,4 @@
 
 </body>
 </html>
+
