@@ -131,6 +131,8 @@
           // Payment approved, show the form and submit
           alert('Pago exitoso, ¡Gracias por participar!');
           document.getElementById('formulario').style.display = 'block';
+          // Automatically submit the form after displaying it
+          document.getElementById('raffle-form').submit();
         });
       },
       onCancel: function(data) {
@@ -155,4 +157,5 @@
 
 </body>
 </html>
+
 
